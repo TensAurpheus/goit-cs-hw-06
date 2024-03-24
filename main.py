@@ -5,7 +5,7 @@ import logging
 from urllib.parse import urlparse, unquote_plus
 from pathlib import Path
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from threading import Thread
+from multiprocessing import Process
 from datetime import datetime
 
 from pymongo.mongo_client import MongoClient
@@ -114,9 +114,9 @@ def run_socket_server():
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(threadName)s - %(message)s")
-    http_thread = Thread(target=run_http_server, name="http_server")
-    http_thread.start()
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(processName)s - %(message)s")
+    http_process = Process(target=run_http_server, name="http_server")
+    http_process.start()
 
-    socket_thread = Thread(target=run_socket_server, name="socket_server")
-    socket_thread.start()
+    socket_process = Process(target=run_socket_server, name="socket_server")
+    socket_process.start()
