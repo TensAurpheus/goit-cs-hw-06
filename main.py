@@ -11,7 +11,8 @@ from datetime import datetime
 from pymongo.mongo_client import MongoClient
 
 
-URI = f"mongodb://localhost:27017"
+
+URI = f"mongodb://mongodb:27017"
 BASE_DIR = Path(__file__).parent
 BUFFER_SIZE = 1024
 HTTP_PORT = 3000
